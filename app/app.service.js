@@ -9,24 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
-        this.Title = '';
-        this.CardList = [];
-        this.Title = 'Magic The Gathering';
+var http_1 = require("@angular/http");
+var CardService = (function () {
+    function CardService(http) {
+        this.http = http;
     }
-    AppComponent.prototype.getCards = function () {
-        var _this = this;
-        this.CardService.getCards().then(function (cards) { return _this.CardList; });
+    CardService.prototype.getCards = function () {
+        return this.http.get('/api/').toPromise();
     };
-    return AppComponent;
+    return CardService;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app',
-        template: "\n        <h1>{{ Title }}</h1>\n        {{ CardList }}\n              "
-    }),
-    __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+CardService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], CardService);
+exports.CardService = CardService;
+//# sourceMappingURL=app.service.js.map
