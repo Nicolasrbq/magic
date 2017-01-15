@@ -10,12 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+require("rxjs/add/operator/toPromise");
 var CardService = (function () {
     function CardService(http) {
         this.http = http;
+        this.getCards();
+        this.RootUrl = 'http://localhost:3002/';
     }
     CardService.prototype.getCards = function () {
-        return this.http.get('/api/').toPromise();
+        //console.log('getCards : ', this.http.get('http://localhost:3002/api/').toPromise());
+        return this.http.get('http://localhost:3002/api/cardlist').toPromise();
     };
     return CardService;
 }());

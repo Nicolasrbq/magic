@@ -6,9 +6,9 @@ import { AppComponent }  from './app.component';
 import { CardService }  from './app.service';
 
 @NgModule({
-  imports: [ BrowserModule ],
-  declarations: [ AppComponent ],
+  imports: [ BrowserModule, HttpModule ],
   providers: [ CardService ],
+  declarations: [ AppComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

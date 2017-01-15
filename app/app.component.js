@@ -9,24 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var app_service_1 = require("./app.service");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(CardService) {
         this.Title = '';
         this.CardList = [];
         this.Title = 'Magic The Gathering';
+        this.CardService = CardService;
+        this.getCards();
     }
     AppComponent.prototype.getCards = function () {
         var _this = this;
-        this.CardService.getCards().then(function (cards) { return _this.CardList; });
+        console.log(this.CardService.getCards());
+        this.CardService.getCards().then(function (CardList) { return _this.CardList = CardList.json(); });
     };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
-        template: "\n        <h1>{{ Title }}</h1>\n        {{ CardList }}\n              "
+        providers: [app_service_1.CardService],
+        template: "\n        <h1>{{ Title }}</h1>\n        <p *ngFor=\"let card of CardList\">{{ card.Name }}</p>\n              "
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [app_service_1.CardService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

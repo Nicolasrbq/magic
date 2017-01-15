@@ -8,6 +8,17 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
     router.get("/",function(req,res){
         res.json({"Message" : "Hello World !"});
     });
+    router.get("/cardlist",function(req,res){
+        var query = "SELECT * From edition";
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                //console.log(rows);
+                res.json(rows);
+            }
+        });
+    });
     // router.post("/users",function(req,res){
     //     var query = "INSERT INTO ??(??,??) VALUES (?,?)";
     //     var table = ["user_login","user_email","user_password",req.body.email,md5(req.body.password)];

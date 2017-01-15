@@ -32,19 +32,24 @@ REST.prototype.connectMysql = function() {
 }
 
 REST.prototype.configureExpress = function(connection) {
-      var self = this;
-      app.use(bodyParser.urlencoded({ extended: true }));
-      app.use(bodyParser.json());
-      var router = express.Router();
-      app.use('/api', router);
-      var rest_router = new rest(router,connection,md5);
-      self.startServer();
+    var self = this;
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+    });
+    var router = express.Router();
+    app.use('/api', router);
+    var rest_router = new rest(router,connection,md5);
+    self.startServer();
 }
 
 REST.prototype.startServer = function() {
-      app.listen(3001,function(){
-          console.log("All right ! I am alive at Port 3001.");
-      });
+    app.listen(3002,function(){
+        console.log("All right ! I am alive at Port 3002.");
+    });
 }
 
 REST.prototype.stop = function(err) {

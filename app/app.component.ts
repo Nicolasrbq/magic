@@ -4,24 +4,27 @@ import { Response } from '@angular/http';
 
 @Component({
     selector: 'app',
+    providers: [CardService],
     template: `
         <h1>{{ Title }}</h1>
-        {{ CardList }}
+        <p *ngFor="let card of CardList">{{ card.Name }}</p>
               `
 })
 export class AppComponent {
 
     Title: string = '';
     CardList: string[] = [];
-    CardService: CardService;
+    CardService: any;
 
-    constructor() {
+    constructor(CardService: CardService) {
         this.Title = 'Magic The Gathering';
-
+        this.CardService = CardService;
+        this.getCards();
     }
 
     getCards() {
-        this.CardService.getCards().then(cards => this.CardList);
+        console.log(this.CardService.getCards());
+        this.CardService.getCards().then((CardList: any) => this.CardList = CardList.json());
     }
 
  }

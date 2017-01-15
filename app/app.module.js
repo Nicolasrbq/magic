@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var app_service_1 = require("./app.service");
 var AppModule = (function () {
@@ -19,9 +20,9 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent],
+        imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
         providers: [app_service_1.CardService],
+        declarations: [app_component_1.AppComponent],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])
