@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CardService } from './app.service';
-import { Response } from '@angular/http';
 
 @Component({
     selector: 'app',
