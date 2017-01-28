@@ -5,7 +5,7 @@ function REST_ROUTER(router,connection) {
 }
 
 REST_ROUTER.prototype.handleRoutes = function(router,connection) {
-    router.get("/getEditions",function(req,res){
+    router.get("/getEditions", function(req,res){
         var query = "SELECT * From edition";
         connection.query(query,function(err,rows){
             if(err) {
@@ -15,7 +15,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection) {
             }
         });
     });
-    router.post("/createEdition",function(req,res){
+    router.post("/createEdition", function(req,res){
         console.log('req', req);
         console.log('res', res);
         var query = "INSERT INTO edition(??,??) VALUES (?,?)";
@@ -27,7 +27,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection) {
             }
         });
     });
-    router.delete("/deleteEdition",function(req,res){
+    router.delete("/deleteEdition", function(req,res){
         console.log('req', req);
         console.log('res', res);
         var query = "DELETE * FROM edition WHERE Id = " + req;
@@ -36,6 +36,17 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
                 res.json({"Error" : false, "Message" : "Edition created !"});
+            }
+        });
+    });
+    router.get("/getCards/:id", function(req,res){
+        var editionId = req.params.id;
+        var query = "SELECT * From card WHERE EditionId = " + editionId;
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json(rows);
             }
         });
     });

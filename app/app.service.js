@@ -14,11 +14,14 @@ require("rxjs/add/operator/toPromise");
 var CardService = (function () {
     function CardService(http) {
         this.http = http;
-        this.getCards();
         this.RootUrl = 'http://localhost:3002/';
     }
-    CardService.prototype.getCards = function () {
+    CardService.prototype.getEditionList = function () {
         return this.http.get('http://localhost:3002/api/getEditions').toPromise();
+    };
+    CardService.prototype.getCardList = function (editionId) {
+        console.log(editionId);
+        return this.http.get('http://localhost:3002/api/getCards/' + editionId).toPromise();
     };
     return CardService;
 }());

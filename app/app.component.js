@@ -13,15 +13,19 @@ var app_service_1 = require("./app.service");
 var AppComponent = (function () {
     function AppComponent(CardService) {
         this.Title = '';
+        this.EditionList = [];
         this.CardList = [];
         this.Title = 'Magic The Gathering';
         this.CardService = CardService;
-        this.getCards();
+        this.getEditionList();
     }
-    AppComponent.prototype.getCards = function () {
+    AppComponent.prototype.getEditionList = function () {
         var _this = this;
-        console.log(this.CardService.getCards());
-        this.CardService.getCards().then(function (CardList) { return _this.CardList = CardList.json(); });
+        this.CardService.getEditionList().then(function (EditionList) { return _this.EditionList = EditionList.json(); });
+    };
+    AppComponent.prototype.getCardList = function (EditionId) {
+        var _this = this;
+        this.CardService.getCardList(EditionId).then(function (CardList) { return _this.CardList = CardList.json(); });
     };
     return AppComponent;
 }());
@@ -29,7 +33,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
         providers: [app_service_1.CardService],
-        template: "\n        <h1>{{ Title }}</h1>\n        <p *ngFor=\"let card of CardList\">{{ card.Name }}</p>\n              "
+        template: "\n        <h1>{{ Title }}</h1>\n        <ul>\n            <li *ngFor=\"let edition of EditionList\" (click)=\"getCardList(edition.Id)\">\n                <span>{{ edition.Name }}</span>\n            </li>\n        </ul>\n        <div *ngFor=\"let card of CardList\">{{ card.Name }}</div>\n              "
     }),
     __metadata("design:paramtypes", [app_service_1.CardService])
 ], AppComponent);
