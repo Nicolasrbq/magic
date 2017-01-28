@@ -16,7 +16,7 @@ export class CardService {
     }
 
     getCards() {
-        return this.http.get('http://localhost:3002/api/cardlist').toPromise();
+        return this.http.get('http://localhost:3002/api/getEditions').toPromise();
     }
 
 }

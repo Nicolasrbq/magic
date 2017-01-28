@@ -18,8 +18,7 @@ var CardService = (function () {
         this.RootUrl = 'http://localhost:3002/';
     }
     CardService.prototype.getCards = function () {
-        //console.log('getCards : ', this.http.get('http://localhost:3002/api/').toPromise());
-        return this.http.get('http://localhost:3002/api/cardlist').toPromise();
+        return this.http.get('http://localhost:3002/api/getEditions').toPromise();
     };
     return CardService;
 }());
