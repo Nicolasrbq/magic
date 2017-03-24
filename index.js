@@ -20,7 +20,7 @@ REST.prototype.connectMysql = function() {
         user     : 'nicolasryft9216',
         password : 'kADhhdQg',
         database : 'magic-the-gathering',
-        debug    :  false
+        debug    :  true
     });
     pool.getConnection(function(err,connection){
         if(err) {
