@@ -34,7 +34,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
         providers: [app_service_1.CardService],
-        template: "\n        <h1>{{ Title }}</h1>\n        <ul>\n            <li *ngFor=\"let edition of EditionList\" (click)=\"getCardList(edition.Id)\">\n                <span>{{ edition.Name }}</span>\n            </li>\n        </ul>\n        <div *ngFor=\"let card of CardList\">{{ card.Name }}</div>\n              "
+        template: "\n        <h1>{{ Title }}</h1>\n        <ul>\n            <li *ngFor=\"let edition of EditionList\" (click)=\"getCardList(edition.Id)\">\n                <span>{{ edition.name }}</span>\n            </li>\n        </ul>\n        <div *ngFor=\"let card of CardList\">{{ card.name }}</div>\n              "
     }),
     __metadata("design:paramtypes", [app_service_1.CardService])
 ], AppComponent);

@@ -8,10 +8,10 @@ import { CardService } from './app.service';
         <h1>{{ Title }}</h1>
         <ul>
             <li *ngFor="let edition of EditionList" (click)="getCardList(edition.Id)">
-                <span>{{ edition.Name }}</span>
+                <span>{{ edition.name }}</span>
             </li>
         </ul>
-        <div *ngFor="let card of CardList">{{ card.Name }}</div>
+        <div *ngFor="let card of CardList">{{ card.name }}</div>
               `
 })
 export class AppComponent {
